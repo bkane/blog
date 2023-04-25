@@ -1,0 +1,22 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+    - icon: link-45deg
+      text: ben-kane.com
+      href: https://www.ben-kane.com
+    - icon: twitter
+      text: '@benkane'
+      href: https://twitter.com/benkane
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/benkane/
+    - icon: github
+      text: Github
+      href: https://github.com/bkane
+
+---
+
+I am blogging about trying to learn about machine learning because [they told me to](https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045).

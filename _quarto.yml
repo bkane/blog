@@ -1,0 +1,16 @@
+project:
+    type: website
+
+website:
+    title: "Ben's Machine Learning Blog"
+    navbar:
+        right:
+            - about.qmd
+            - icon: github
+              href: https://github.com/bkane
+            - icon: twitter
+              href: https://twitter.com/benkane
+format:
+    html:
+        theme: cosmo
+        css: styles.css

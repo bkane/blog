@@ -1,0 +1,59 @@
+---
+title: "Hello Machine Learning World"
+author: "Ben Kane"
+date: "2023-04-25"
+image: "grizzly.jpg"
+categories: [learning]
+format:
+  html:
+    code-fold: true
+---
+
+This is the first post in a Quarto blog. Turns out it's Quarto, not Quatro. I only discovered that a few minutes ago.
+
+Then again, I didn't know what Quatro was at all half an hour ago. I was looking at [fastpages](https://github.com/fastai/fastbook/blob/master/app_blog.ipynb), which is a way of writing blog posts on GitHub Pages and incorporating Jupyter notebook cells and output. And what is a Jupyter notebook? Well it's like an environment where you can mix Python code and markdown text for a very interactive way of experimenting with and demonstrating machine concepts. And you can run these notebooks in the cloud in places like Colab or Kaggle. Then you can export your notebook code to regular Python and make an app.py file that creates a Gradio interface for running a machine learning model on a HuggingFace Space like this [Bear Classifier](https://huggingface.co/spaces/bk6000/bear_classifier) I made.
+
+What the heck did I just say?
+
+I've used Python off and on for about 15 years now. It's been a language I dabble with for a week or two to try out something like writing a Discord bot, generating web pages from a template, doing some web scraping, or messing about with machine learning/deep learning. I play for a bit, get a bit bogged down with package management and environment management, learn about some new templating language, a new meta-meta-meta install manager with some cute name like anaconda or conda or cda or whatever. Then after my experiment runs its course, I promptly drop Python and go back to whatever it is I'm actually doing.
+
+It's a very similar to the experience I have with web development, where there are myriad packages and frameworks and versions of *everything*, all packed with syntactic sugar and code generation ostensibly to make it easy to pick up. But the dependencies always collapse, the documentations and the tutorials always get outdated, and you're left trying to follow the trail from breadcrumb to breadcrumb in order to get something working, usually without really understanding how it all comes together. And it's not for lack of trying! You can dig in and see how the tools and templates and managers all work, but ultimately it just feels like layers of frameworks obfuscating the task at hand.
+
+Of course, when the layers of 'simplifying' frameworks get to be too much... you need to make a framework that eschews all the cruft and *really* makes things easy.
+
+![Standards](https://imgs.xkcd.com/comics/standards_2x.png)
+
+### Learning So Far
+Anyway, here I am writing a blog to record how I'm feeling along this journey of learning machine learning (for probably the second or third time). I've been following the [fastai course](https://course.fast.ai/) which has been great for getting things off the ground quickly. It also recommended I start blogging, so here we are.
+
+So far, I've done two video lessons and the two accompanying chapters of the book (which take slightly different approaches to the same concepts). I'm appreciating the reinforcement thus far, because I've bounced off this subject in the past.
+
+Some big, immediate learnings: you can use a small amount of data to fine-tune an existing model, and get something useful for a standard application to just call like any other function. The idea of integrating a trained model into something like a video game is actually incredibly... doable. Sure, there are frameworks and languages and whatever other hurdles to overcome before I just drop a method into a Unity game, but it's really not that far off.
+
+In the first couple of lessons, I've fine-tuned an image classifer based on the resnet18 model. We've even dabbled with the HuggingFace community site to make a public Space, which is a site that hosts the model I trained to classify images between black bears, grizzly bears, and teddy bears. It's not very sophisticated, but it's a surprisingly complete end-to-end deployment of a *thing* that uses an image classification model. And you can just use it right now!
+
+[![A basic bear classifier that I made ➡ Click to try it out on huggingface.co!](bear_classifier.jpg)](https://huggingface.co/spaces/bk6000/bear_classifier)
+
+Okay, one more thing before I go: this blog post can have Python code in it, like a notebook. I should try that out, otherwise this has just been a really, really complicated Wordpress site.
+
+```{python}
+from duckduckgo_search import ddg_images
+from fastcore.all import *
+from fastdownload import download_url
+from fastai.vision.all import *
+
+def search_images(term, max_images=30):
+    print(f"Searching for '{term}'")
+    return L(ddg_images(term, max_results=max_images)).itemgot('image')
+
+urls = search_images('grizzly bear', max_images=1)
+dest = 'grizzly.jpg'
+download_url(urls[0], dest, show_progress=False)
+
+im = Image.open(dest)
+im.to_thumb(256,256)
+```
+
+Now to get this blog post rendered and committed to a GitHub repo and published to GitHub Pages, preferably using an automated GitHub Action..........
+
+This was a lot easier in the GeoCities days.
