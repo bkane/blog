@@ -2,7 +2,6 @@
 title: "From Scratch"
 author: "Ben Kane"
 date: "2023-05-03"
-image: "grizzly.jpg"
 categories: [learning]
 format:
   html:
