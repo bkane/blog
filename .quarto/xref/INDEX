@@ -13,5 +13,11 @@
   },
   "posts/hello-world/index.qmd": {
     "index.html": "e92351a7"
+  },
+  "posts/2023-05-03 from scratch/index.qmd": {
+    "index.html": "c471cbf3"
+  },
+  "posts/2023-05-03-from-scratch/index.qmd": {
+    "index.html": "58ee9637"
   }
 }

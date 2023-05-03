@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2023-05-03-from-scratch/index.html",
       "/posts/hello-world/index.html"
     ]
   }
