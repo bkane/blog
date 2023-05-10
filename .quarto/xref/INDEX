@@ -22,5 +22,14 @@
   },
   "posts/post-next/index.qmd": {
     "index.html": "3847d711"
+  },
+  "posts/2023-05-10-intro-to-nlp/index.qmd": {
+    "index.html": "4f367e7d"
+  },
+  "next-post.qmd": {
+    "next-post.html": "658cb830"
+  },
+  "posts/2023-05-08-from-scratch-ii/index.qmd": {
+    "index.html": "da24299d"
   }
 }

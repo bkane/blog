@@ -1,0 +1,70 @@
+---
+title: "Getting Started with Natural Language Processing (NLP)"
+author: "Ben Kane"
+date: "2023-05-10"
+categories: [learning, NLP]
+format:
+  html:
+    code-fold: false
+---
+
+Dipping the tippy tip of my tippy toe into the NLP waters has been very interesting. Off the bat, figuring out how to put arbitrary text into a neural network is a great light-bulb moment.
+
+Basically, you split text up into tokens (roughly "pieces of words") and then assign each token a unique number (creating a vocabulary - just a dictionary of ids and tokens). Then you can take your input text, *tokenize* it (split into tokens), and convert those tokens to numbers according to the vocabulary (*numericalization*). Now you have an array of numbers to feed into a neural network!
+
+# A couple of questions
+
+1. What about tokens that aren't in the vocabulary? 
+Presumably these just get assigned new, unique ids next in line, and the model doesn't have any tuned weights to do anything immediately useful with them. But since tokens are smaller than words, you probably end up covered most of the time?
+
+2. How is "document length" really handled? Our image recognition network expected images to be 28x28 and thus expected an input of 784 numbers. Does the model just have a max size that is padded with empty tokens when a smaller document is fed in?
+
+If so, that would explain why ChatGPT has a max document length. But why are API calls charged by the token? Wouldn't "running the model" take the same amount of compute in this case? Maybe things are iterated... but then why a max? Need to look into how an LLM like ChatGPT actually works.
+
+# A couple of neat learnings
+*EDA* is *exploratory data analysis* and it's the first thing a lot of Kaggle competition entry notebooks do. Look over the data, visualize it, reason about its features, etc. Seems kinda fun! I need to learn pandas and matplotlib a lot more to be able to do this effectively.
+
+*ULMFit*: this is *Universal Language Model Fine-tuning*, which is an approach where you take a pre-trained model that was developed on say, the entire text of Wikipedia. This is a good model for interpreting English text. Then you fine tune it with something related to your subject matter, like the contents of all the movie reviews on IMDb. This gives you a model that is more suited to the style of writing found in movie reviews (as opposed to the more formal Wikipedia), and likely includes way more movie-specific terms, like names of actors. *Then* you create a movie review sentiment classifier (positive or negative) using your new IMDb model. This apparently gives better results than if you just tried to make a movie review classifier directly from the Wikipedia model.
+
+*Tokenizers*: You need to tokenize your input text in the same way the pre-trained model tokenized things (or else you'd be working with different vocabularies and the results would be nonsensical).
+
+# Shapes are still hard
+
+```{python}
+import numpy as np, matplotlib.pyplot as plt
+
+def f(x): return -3*x**2 + 2*x + 20
+
+def plot_function(f, min=-2, max=2):
+  x = np.linspace(min, max, 100)
+  plt.plot(x, f(x))
+
+plot_function(f)
+```
+
+This part makes sense to me. However, we later plotted a polynomial for `f` that expected `x` to be a 2D array instead of a 1D array. It was the result of called to `sklearn.pipeline.make_pipeline()` to create a model, fitting it to some data, and then plotting the resulting `model.predict` function. The details aren't super important, but the gist is that a 2D array for the (independent?) variable x was needed.
+
+To do this, we can reshape! I was also introduced to the NumPy concept of [advanced indexing/slicing](https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html) where you can specify an extra axis using `None` to add a dimension:
+```{python}
+min=0
+max=3
+step=4
+x = np.linspace(min, max, step)
+print(f'original (1d): {x}')
+
+x = np.linspace(min, max, step).reshape(-1,1)
+print(f'reshaped (2d):\n{x}')
+
+x = np.linspace(min, max, step)[:,None]
+print(f'using advanced indexing (2d, same):\n{x}')
+```
+
+It's amazing how often there will be a small thing like `[:,None]` thrown into the the `plot_function` method and I spiral off down a rabbit hole. I feel like I'm finding my way along by grabbing at the walls and fumbling in the dark, but honestly I'm happy that I do kind of figure it out in the end.
+
+# More consequences of the pace of development
+
+The video is an example of NLP using one of the "Transformer" models on HuggingFace. It's not clear what a "Transformer" is. The prior way of doing this was using "ULMFit", which is apparently based on a *recurrent neural network (RNN)*. 
+
+Trouble is, we haven't covered that yet. So the chapter in the book (happens to be chapter 10(!!)) isn't something I can readily jump to (as it references chapters 8 and 9).
+
+Will the (video) course come back to this? Who knows!
