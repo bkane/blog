@@ -1,0 +1,36 @@
+---
+title: "Lost in the (Random) Forest"
+author: "Ben Kane"
+date: "2023-06-02"
+categories: [learning, randomforest]
+format:
+  html:
+    code-fold: false
+---
+
+Uh oh, it has been a while. The challenge of learning something new on a self-directed schedule is always when the momentum falters and the shiny fun newness has worn off. In the first lesson or two, we were making cool toys very quickly, without getting bogged down in specifics or inner workings.
+
+Well we're in the inner workings now.
+
+I haven't had much time to work on the course for a couple of weeks and the risk of just stopping altogether is pretty high. Feeling like I "have" to write these blog posts rather than moving forward with the content honestly doesn't help, but I do believe that writing them (as well as practicing the notebooks) is critical. If I just watch the videos, nothing will stick at all.
+
+# Video 6: Decision Trees and Random Forests
+
+This chapter was an interesting one, where we returned to tabular data and tried out an approach that doesn't use machine learning at all. We created binary splits on our data by picking a column and then a split threshold for the values in that column, then seeing how the resulting sets looked. Like if we split based on the "male"/"female" column in the Titanic data set, how good a predictor of the dependent "Survived" variable is that? If we further split *those* groups based on another variable, how good a predictor is the model now? This is called a decision tree.
+
+Then we get to the mind-blowing idea of _random forests_. Here, we make a lot of decision trees that are made using only a subset of the available data (and even the available columns). Then we average their predictions. Somehow, the average of these predictions will cancel out all of the uncorrelated errors present in each tree and give us a more accurate result.
+
+There ends up being a fairly harsh limitation to this approach on a data set as small as the Titanic competition, but it's still fascinating. It also makes for a super easy baseline to start iterating from.
+
+One super sweet thing is you can use tools from the sklearn framework to easily find out *feature importance*, which is a measure of how effective each property of a dataset is when creating these splits. In other words, you can quickly see what the most important columns in your data are!
+
+![Feature importance is cool](feature_importance.png)
+
+# Kaggle
+The second part of the video focused on a practical run through a Kaggle competition, and how to iterate very quickly. I think I need to actually try a Kaggle competition to see how well I can remember any of this stuff and how much I can understand how to apply it without guidance.
+
+I suspect I wouldn't know where to start.
+
+# Onward
+Perfect is the enemy of good. I haven't mastered the material yet, but I want to move on because losing motivation/momentum is more dangerous than not fully grasping things.
+
