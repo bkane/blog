@@ -1,0 +1,62 @@
+---
+title: "Kaggle'd"
+author: "Ben Kane"
+date: "2023-06-07"
+categories: [learning, kaggle]
+format:
+  html:
+    code-fold: false
+---
+
+Previously, on BLOG: 
+
+> I think I need to actually try a Kaggle competition to see how well I can remember any of this stuff and how much I can understand how to apply it without guidance.
+
+Well, I've spent a couple days iterating on the [Spaceship Titanic](https://www.kaggle.com/competitions/spaceship-titanic) competition on Kaggle, which is another starter competition like the original Titanic competition. This one is totally fabricated, but it has a similar structure: predict who got 'transported' to an alternate dimension!
+
+# Baby Steps and Basic Recall
+Jeremy's advice is to submit as soon as possible, and then iterate quickly. Sounds like good software development to me! I made a notebook and then followed the lesson notes for creating a very basic decision tree. Mostly this was an exercise in practicing manipulating data frames and getting familiar with the data columns. I used the `sklearn` `DecisionTreeClassifier` (rather than creating it from scratch), ran the test data set through the predictor, packaged up the .csv, hit "Submit" and...
+
+Scored 0.
+
+Okay, double-checked the expected data format and changed 1/0 to True/False, submitted again, and...
+
+![Scored 0.7255 with a single Decision Tree!](decision_tree.png)
+
+# Iterating: RandomForests and Feature Engineering
+The next step was to try out a RandomForest, which was really just a simple change to use `sklearn.ensemble.RandomForestClassifier` instead of the decision tree. Iterating quickly meant it was time to submit again immediately! This instantly garnered a big improvement to about 0.79. For context, the top of the leaderboard is scoring about 0.81.
+
+But what I wanted to do next was some "Feature Engineering". To me, at this stage, this meant making new columns out of existing columns. There was some low hanging fruit, because the "Cabin" was described as having a format of "Deck/CabinNumber/SideOfShip", so this string could be parsed into more useful categories.
+
+This gave me some practice working with pandas, but ultimately didn't move the needle much. The variation in how the forest was created along with the various columns I was adding actually resulted in slightly worse scores most of the time. I did discover that creating a "Total Spend" column by summing the individual expenditure columns resulted in a useful feature, but that was really just luck.
+
+![Feature Importance](feature_imp.png)
+
+# Machine Learning
+Next up, it was time to actually do machine learning! Then I remembered I'd have to deal with normalizing values, filling in missing data, creating dummy variables... argh! *Then* I remembered that fastai is supposed to handle this for me, so I got to work.
+
+The hardest part here was just remembering how to actually put this stuff together, and I used one of Jeremy's notebooks as a reference for making a `TabularPandas` DataLoaders object and then using `tabular_learner` to train it.
+
+I even *ensembled* 5 of these models together, taking their average predictions.
+
+This performed almost as poorly as my initial decision tree. Clearly there's more to this. However, I was proud to have gotten to this point because although I needed references from other notebooks, I was applying what I had learned to a new problem.
+
+# Walkthrough and Better Feature Engineering
+After I had done this, I wanted to look up "how to do it properly". I found a great notebook walkthrough called (Spaceship Titanic Competition End to End Project)[https://www.kaggle.com/code/kdsharma/spaceship-titanic-competition-end-to-end-project] and ended up following it through.
+
+This was super useful because I got a lot of practice visualizing pieces of the data set and actually reasoning about what I was seeing. Things with really high cardinality aren't especially useful for making predictions. Sometimes continuous variables can be grouped for to help make better categories. Lots of great stuff.
+
+The process of doing "Exploratory Data Analysis" followed by "Feature Engineering" followed by experimentations in training approaches feels really fun! It's like unraveling a puzzle slowly.
+
+I ended up mostly typing out the feature engineering of the walkthrough myself (which was great practice and has me feeling more comfortable with matplotlib and seaborn every time). The final submission I did resulted in this:
+
+![Top 1000 baby](kaggle.png)
+
+# Today's Concerns
+Towards the end of the walkthrough, it gets to the models and training, which is all way over my head. I don't know about these yet and this wasn't the avenue to learn them. Instead, I just used fastai and the tabular_learner. Even here though, I was just playing around with learning rate, layer sizes, and number of epochs/ensembles. 
+
+It feels *gross*.
+
+The exploratory data analysis felt kind of hand-wavey, but you could see where more rigor could be applied. This part though? It feels like guessing and checking amongst a plethora of rules of thumb. I *think* this is the hyperparameter tuning part of things, and I believe there are automation tools to help with it. For now though, it feels like the difference between 0.79 and 0.81 is fiddly and unscientific. 
+
+Hopefully that's just because I don't know enough yet. I'd hate for the science in data science to be a fraud.
