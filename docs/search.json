@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Ben’s Machine Learning Blog",
     "section": "",
-    "text": "Softmax, Collab, and Listen\n\n\n\n\n\n\n\nlearning\n\n\nkaggle\n\n\n\n\n\n\n\n\n\n\n\nJun 19, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nKaggle’d\n\n\n\n\n\n\n\nlearning\n\n\nkaggle\n\n\n\n\n\n\n\n\n\n\n\nJun 7, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nLost in the (Random) Forest\n\n\n\n\n\n\n\nlearning\n\n\nrandomforest\n\n\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch… uh, Again\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 15, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nGetting Started with Natural Language Processing (NLP)\n\n\n\n\n\n\n\nlearning\n\n\nNLP\n\n\n\n\n\n\n\n\n\n\n\nMay 10, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch Pt II\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 8, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 3, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nHello Machine Learning World\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nApr 25, 2023\n\n\nBen Kane\n\n\n\n\n\n\nNo matching items"
+    "text": "The End (of the beginning)\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nJun 26, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nSoftmax, Collab, and Listen\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nJun 19, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nKaggle’d\n\n\n\n\n\n\n\nlearning\n\n\nkaggle\n\n\n\n\n\n\n\n\n\n\n\nJun 7, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nLost in the (Random) Forest\n\n\n\n\n\n\n\nlearning\n\n\nrandomforest\n\n\n\n\n\n\n\n\n\n\n\nJun 2, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch… uh, Again\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 15, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nGetting Started with Natural Language Processing (NLP)\n\n\n\n\n\n\n\nlearning\n\n\nNLP\n\n\n\n\n\n\n\n\n\n\n\nMay 10, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch Pt II\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 8, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nFrom Scratch\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nMay 3, 2023\n\n\nBen Kane\n\n\n\n\n\n\n  \n\n\n\n\nHello Machine Learning World\n\n\n\n\n\n\n\nlearning\n\n\n\n\n\n\n\n\n\n\n\nApr 25, 2023\n\n\nBen Kane\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/hello-world/index.html",
@@ -180,5 +180,54 @@
     "title": "Softmax, Collab, and Listen",
     "section": "Embeddings",
     "text": "Embeddings\nEmbeddings are another ‘fancy term for something basic’, as it turns out to just mean “look something up in an array”. In this case, we made an embedding for the user latent factors and another for the movie latent factors. We ended up with a table of users where the extra columns were the latent factors, and similarly for the movies. To make a prediction of a particular user and a particular movie, we needed to ‘look up’ the latent factors for that user and take the dot product of them with the latent factors of that particular movie (which also needed to be looked up)."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html",
+    "href": "posts/2023-06-26-the-end/index.html",
+    "title": "The End (of the beginning)",
+    "section": "",
+    "text": "I have now finished part 1 of “Practical Deep Learning for Coders”. I’m glad I’ve done it."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#more-with-embeddings",
+    "href": "posts/2023-06-26-the-end/index.html#more-with-embeddings",
+    "title": "The End (of the beginning)",
+    "section": "More with Embeddings",
+    "text": "More with Embeddings\nLast time, we used a magical Embedding class. This time, we dug into it and saw how it was implemented, which helps with understanding what it actually is and does. Along the way, we saw how PyTorch ends up ‘knowing’ what things are parameters (and thus need to be tuned during the gradient descent step). Little by little, removing the magic and replacing it with understanding. At a certain point though, it is easier to use the magic and just get stuff done of course."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#principle-component-analysis",
+    "href": "posts/2023-06-26-the-end/index.html#principle-component-analysis",
+    "title": "The End (of the beginning)",
+    "section": "Principle Component Analysis",
+    "text": "Principle Component Analysis\nJeremy glossed over this super quickly, but pca is apparently a method by which we can compress our ~50 latent factors in the movie ratings example down to just a few, which are then plotted:\n\n\n\nEmbeddings!\n\n\nThis is astoundingly cool. You can tell these movies have some sort of logical grouping to them (although how much of that is humans trying to derive patterns where they might not exist?). But there is absolutely no explicit data about these movies - just lots of ratings from lots of users. And yet… patterns emerge."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#collaborative-filtering-and-neural-networks",
+    "href": "posts/2023-06-26-the-end/index.html#collaborative-filtering-and-neural-networks",
+    "title": "The End (of the beginning)",
+    "section": "Collaborative Filtering and Neural Networks",
+    "text": "Collaborative Filtering and Neural Networks\nOne thing that crops up now and again is the distinction between machine learning and deep learning. The collaborative filtering we did initially was a sort of ‘matrix completion’. But we can make a neural network with layers and train that instead for a deep learning approach. And as usual, fastai has a shortcut for it:\nlearn = collab_learner(dls, use_nn=True, y_range=(0,5.5), layers=[100,50])"
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#get_emb_sz",
+    "href": "posts/2023-06-26-the-end/index.html#get_emb_sz",
+    "title": "The End (of the beginning)",
+    "section": "get_emb_sz",
+    "text": "get_emb_sz\nThis is the method that enshrines Jeremy’s intuition into a Rule of Thumb. Sigh."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#max-pooling",
+    "href": "posts/2023-06-26-the-end/index.html#max-pooling",
+    "title": "The End (of the beginning)",
+    "section": "Max Pooling",
+    "text": "Max Pooling\nOne aspect that was only lighted touched on is the reduction in size of the input at each layer. Apparently an older method would be to do “max pooling”, which is essentially to take the max pixel value out of every group of, say, 2x2 pixels (giving a 4x reduction in size). This can be repeated until you get small enough to make some sort of final output on the image (e.g. does any cell of this 7x7 reduced image have a high enough “yes there’s a bear” value? Then the image has a bear).\nHere we touch on another “the last part of a model is important” bit of wisdom. That final calculation of “average pooling” may be a good choice for determining if a picture is of a bear, but it may be super bad at answering if a wildlife camera photo has a small bear somewhere in it (because overall, that’s not a picture of a bear - only a tiny bit would be strongly bear-like). Sometimes “max pooling” is better, sometimes “average pooling”. I imagine there are others."
+  },
+  {
+    "objectID": "posts/2023-06-26-the-end/index.html#dropout",
+    "href": "posts/2023-06-26-the-end/index.html#dropout",
+    "title": "The End (of the beginning)",
+    "section": "Dropout",
+    "text": "Dropout\nCreate a layer of random data. Use that to make a ‘dropout filter’ that contains either 0 or 1, based on whether the corresponding cell of the random data exceeds some fixed threshold (e.g. 20% dropout). Then multiply your convolution layer by the dropout layer to randomly remove some of the data (without adding noise). The idea is that humans can deal with this sort of incomplete data, so we should train our vision models similarly. This helps with avoiding overfitting and can help generalize a model, at the expense of doing well at training.\nThis is kind of like data augmention! Except it happens in the middle of the activation layers, rather than at the input."
   }
 ]

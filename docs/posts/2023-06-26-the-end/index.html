@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ben Kane">
-<meta name="dcterms.date" content="2023-06-19">
+<meta name="dcterms.date" content="2023-06-26">
 
-<title>Ben’s Machine Learning Blog - Softmax, Collab, and Listen</title>
+<title>Ben’s Machine Learning Blog - The End (of the beginning)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Softmax, Collab, and Listen</h1>
+      <h1 class="title">The End (of the beginning)</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">learning</div>
               </div>
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 19, 2023</p>
+        <p class="date">June 26, 2023</p>
       </div>
     </div>
     
@@ -145,55 +145,56 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Video 7 is now complete. It’s a bit of grab bag but here are some of the coolest bits that stuck with me:</p>
-<section id="gradient-accumulation" class="level2">
-<h2 class="anchored" data-anchor-id="gradient-accumulation">Gradient Accumulation</h2>
-<p>Also known as “don’t do the gradient step immediately after you feed a batch through the GPU”. Instead, feed in <em>part</em> of a batch, then add the effect of that partial batch to the gradients (i.e.&nbsp;accumulate). Then repeat until you have completed all pieces of your batch, then do the gradient step as normal.</p>
-<p>Why? Because you can fit effectively an infinite batch size into GPU memory this way. There do seem to be some caveats with some model types, but for the stuff we’ve been doing, it <em>should</em> be mathematically equivalent.</p>
+<p>I have now finished part 1 of “Practical Deep Learning for Coders”. I’m glad I’ve done it.</p>
+<section id="more-with-embeddings" class="level2">
+<h2 class="anchored" data-anchor-id="more-with-embeddings">More with Embeddings</h2>
+<p>Last time, we used a magical <code>Embedding</code> class. This time, we dug into it and saw how it was implemented, which helps with understanding what it actually is and does. Along the way, we saw how PyTorch ends up ‘knowing’ what things are parameters (and thus need to be tuned during the gradient descent step). Little by little, removing the magic and replacing it with understanding. At a certain point though, it <em>is</em> easier to use the magic and just get stuff done of course.</p>
 </section>
-<section id="predicting-two-things" class="level2">
-<h2 class="anchored" data-anchor-id="predicting-two-things">Predicting Two Things</h2>
-<p>We did the ‘rice paddy’ example but this time tried to predict both the type of rice variety as well as the disease. A “mind blown” moment was when Jeremy said we’re not actually going from one prediction to two: we’re going from 10 (diseases) to 20 (diseases + varieties).</p>
-<p>There we some other neat learnings in pulling this off too. We needed to examine the loss function more closely. Before, we had let fastai give us a default function of ‘cross entropy’. We just kind of ignored that something like mean squared error wouldn’t work when there are 10 labels to predict (not one).</p>
-</section>
-<section id="softmax-and-cross-entropy" class="level2">
-<h2 class="anchored" data-anchor-id="softmax-and-cross-entropy">Softmax and Cross-Entropy</h2>
-<p>These seemed confusing at first, but ultimately ended up being “raise e to the power of the output value”, then “divide by the sum of all of these”. These values can then be treated as probabilities, with the added bonus that the process tends to push one prediction to the top.</p>
+<section id="principle-component-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="principle-component-analysis">Principle Component Analysis</h2>
+<p>Jeremy glossed over this super quickly, but <code>pca</code> is apparently a method by which we can compress our ~50 latent factors in the movie ratings example down to just a few, which are then plotted:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="softmax.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Softmax!</figcaption>
+<p><img src="embeddings.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Embeddings!</figcaption>
 </figure>
 </div>
-<p>Cross-entropy then ends up being the case where you just take the (negative) softmax of the prediction for the label that was actually correct. But what’s neat is that this “look up the prediction for the correct label” gets expressed as “add up a one-hot vector times all the predictions”.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="cross-entropy.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Daunting, but actually just “look up the prediction for the correct label”</figcaption>
-</figure>
-</div>
+<p>This is astoundingly cool. You can tell these movies have some sort of logical grouping to them (although how much of that is humans trying to derive patterns where they might not exist?). But there is absolutely no explicit data about these movies - just lots of ratings from lots of users. And yet… patterns emerge.</p>
 </section>
-<section id="collaborative-filtering-and-latent-factors" class="level2">
-<h2 class="anchored" data-anchor-id="collaborative-filtering-and-latent-factors">Collaborative Filtering and Latent Factors</h2>
-<p>Another surprising thing was the idea of collaborative filtering on very basic datasets. We looked at movie reviews and posited that it would be useful to be able to compare features of a movie to a user’s preferences. The problem is we don’t have <em>any</em> of that data.</p>
-<p>What’s neat is that it doesn’t matter! We can look at patterns of users and the ratings for movies that we do have and just… pretend that such features exist. We call ’em “latent factors”, and we can do some fitting to get values for those latent factors that work.</p>
-<p>Weird bit: what does those factors actually represent? Probably nothing meaningful in the real world. I imagine you can’t map one of them to genre or release date for instance.</p>
+<section id="collaborative-filtering-and-neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="collaborative-filtering-and-neural-networks">Collaborative Filtering and Neural Networks</h2>
+<p>One thing that crops up now and again is the distinction between machine learning and deep learning. The collaborative filtering we did initially was a sort of ‘matrix completion’. But we can make a neural network with layers and train that instead for a deep learning approach. And as usual, fastai has a shortcut for it:</p>
+<p><code>learn = collab_learner(dls, use_nn=True, y_range=(0,5.5), layers=[100,50])</code></p>
 </section>
-<section id="embeddings" class="level2">
-<h2 class="anchored" data-anchor-id="embeddings">Embeddings</h2>
-<p>Embeddings are another ‘fancy term for something basic’, as it turns out to just mean “look something up in an array”. In this case, we made an embedding for the user latent factors and another for the movie latent factors. We ended up with a table of users where the extra columns were the latent factors, and similarly for the movies. To make a prediction of a particular user and a particular movie, we needed to ‘look up’ the latent factors for that user and take the dot product of them with the latent factors of that particular movie (which also needed to be looked up).</p>
+<section id="get_emb_sz" class="level2">
+<h2 class="anchored" data-anchor-id="get_emb_sz"><code>get_emb_sz</code></h2>
+<p>This is the method that enshrines Jeremy’s intuition into a Rule of Thumb. Sigh.</p>
 </section>
-<section id="weight-decay-and-l2-regularization" class="level1">
-<h1>Weight decay and L2 Regularization</h1>
-<p>If we incorporate the sum of the magnitudes of all the weights as part of the loss function, we can encourage the learning process to favor weights with smaller overall magnitudes. That’s cool, because it will make the model less prone to overfitting, as the weights can’t influence the output so radically that the function has really steep slopes on it.</p>
-<p>I tried adding this to my Spaceship Titanic competition entry and it improved things by a little bit, putting me near the top 500. Cool.</p>
-<p>What’s super important to remember is that weight decay is useful and effective, <em>AND</em> it’s something that fastai can’t meaningfully guess at when doing tabular learning or collaborative filtering (whereas it can and does for vision applications). Therefore, we have to play around with adding it ourselves.</p>
+<section id="part-2-convolutional-neural-networks" class="level1">
+<h1>Part 2: Convolutional Neural Networks</h1>
+<p>I was a bit disappointed that there was just about half an hour dedicated to CNNs before the course sort of abruptly ends. This was an interesting look at one of the different things that can go in the middle of a neural network (instead of just linear layers of matrix multiplications).</p>
+<p>I already knew the gist of CNNs: a ‘sliding window’ operates on a small grid of an image at each step, instead of just a single pixel. This window size is called its <em>kernel</em>. What I didn’t realize is that this means a layer in a CNN only has weights for the size of the window (so just 9 weights if it’s a 3x3 window), rather than a weight for every pixel in the image. That seems very different from a fully connected layer!</p>
+<p><a href="https://medium.com/impactai/cnns-from-different-viewpoints-fab7f52d159c">This blog post has a neat summary of how to view CNNs</a></p>
+<section id="max-pooling" class="level2">
+<h2 class="anchored" data-anchor-id="max-pooling">Max Pooling</h2>
+<p>One aspect that was only lighted touched on is the reduction in size of the input at each layer. Apparently an older method would be to do “max pooling”, which is essentially to take the max pixel value out of every group of, say, 2x2 pixels (giving a 4x reduction in size). This can be repeated until you get small enough to make some sort of final output on the image (e.g.&nbsp;does any cell of this 7x7 reduced image have a high enough “yes there’s a bear” value? Then the image has a bear).</p>
+<p>Here we touch on another “the last part of a model is important” bit of wisdom. That final calculation of “average pooling” may be a good choice for determining if a picture is of a bear, but it may be super bad at answering if a wildlife camera photo has a small bear somewhere in it (because overall, that’s not a picture of a bear - only a tiny bit would be strongly bear-like). Sometimes “max pooling” is better, sometimes “average pooling”. I imagine there are others.</p>
+</section>
+<section id="dropout" class="level2">
+<h2 class="anchored" data-anchor-id="dropout">Dropout</h2>
+<p>Create a layer of random data. Use that to make a ‘dropout filter’ that contains either 0 or 1, based on whether the corresponding cell of the random data exceeds some fixed threshold (e.g.&nbsp;20% dropout). Then multiply your convolution layer by the dropout layer to randomly remove some of the data (without adding noise). The idea is that humans can deal with this sort of incomplete data, so we should train our vision models similarly. This helps with avoiding overfitting and can help generalize a model, at the expense of doing well at training.</p>
+<p>This is kind of like data augmention! Except it happens in the middle of the activation layers, rather than at the input.</p>
+</section>
 </section>
 <section id="todays-concerns" class="level1">
 <h1>Today’s Concerns</h1>
-<p>Q: How many latent factors should we use?</p>
-<p>A: There’s a formula that fastai uses that gives a good rule of thumb. And it comes from Jeremy inventing a function that fits his intuition that he wrote down for various problem sizes. This has even been (apparently) cited in papers.</p>
-<p>What the heck, data science. That’s the kind of lack of rigor or rationale that’s just infuriating.</p>
+<p>That’s the end of part 1 of the course: where to now? I see a couple of options:</p>
+<ol type="1">
+<li><p>Continue with Part 2: <a href="https://www.fast.ai/posts/2023-04-04-part2-2023.html">From Deep Learning Foundations to Stable Diffusion</a>. This is the logical continuation and has some appealing pieces: how to read research papers and how to basically implement Stable Diffusion. That still seems like magic to me, so demystifing that would be great.</p></li>
+<li><p>Do the <a href="https://huggingface.co/learn/deep-rl-course/unit0/introduction">Hugging Face Deep Reinforcement Learning Course</a>. This is right up my alley with training models to play video games. I think I’d be motivated to do this one, and now feel better prepared to actually do it.</p></li>
+<li><p>Make something, like a game or an app.</p></li>
+</ol>
+<p>At the moment, I think #2 is the sweet spot between academic and practical.</p>
 
 
 </section>

@@ -2,7 +2,7 @@
 title: "Softmax, Collab, and Listen"
 author: "Ben Kane"
 date: "2023-06-19"
-categories: [learning, kaggle]
+categories: [learning]
 format:
   html:
     code-fold: false
